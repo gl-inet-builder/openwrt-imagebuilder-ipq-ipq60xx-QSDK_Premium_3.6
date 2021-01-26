@@ -98,6 +98,9 @@ _call_info: FORCE
 BUILD_PACKAGES:=$(sort $(DEFAULT_PACKAGES) $($(USER_PROFILE)_PACKAGES) kernel) $(USER_PACKAGES)
 # "-pkgname" in the package list means remove "pkgname" from the package list
 BUILD_PACKAGES:=$(filter-out $(filter -%,$(BUILD_PACKAGES)) $(patsubst -%,%,$(filter -%,$(BUILD_PACKAGES))),$(BUILD_PACKAGES))
+BUILD_PACKAGES_GL:=$(filter gl-%, $(BUILD_PACKAGES))
+BUILD_PACKAGES:=$(filter-out gl-%, $(BUILD_PACKAGES)) $(BUILD_PACKAGES_GL)
+
 PACKAGES:=
 
 _call_image:
