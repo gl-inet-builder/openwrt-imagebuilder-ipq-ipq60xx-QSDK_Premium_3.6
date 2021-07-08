@@ -1,0 +1,155 @@
+/* Copyright (c) 2015 - 2016, The Linux Foundation. All rights reserved.
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ *
+ */
+
+#include "qcom-ipq4019-ap.dk04.1-b2200.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. IPQ4019/AP-DK04.1-C3";
+
+	soc {
+			spi_1: spi@78b6000 { /* BLSP1 QUP2 */
+				status = "ok";
+			};
+
+			pinctrl@0x01000000 {
+				spi_1_pins: spi_1_pinmux {
+					mux {
+						pins = "gpio44", "gpio46", "gpio47";
+						function = "blsp_spi1";
+						bias-disable;
+					};
+
+					cs {
+						pins = "gpio45";
+						function = "gpio";
+						bias-pull-up;
+					};
+
+					reset {
+						pins = "gpio42";
+						function = "gpio";
+						output-high;
+					};
+
+					mux_2 {
+						pins = "gpio35";
+						function = "gpio";
+						output-high;
+					};
+					host_int {
+						pins = "gpio0";
+						function = "gpio";
+						input;
+						bias-pull-down;
+					};
+					//wake {
+					//	pins = "gpio40";
+					//	function = "gpio";
+					//	output-high;
+					//};
+				};
+			};
+
+			edma@c080000 {
+			compatible = "qcom,ess-edma";
+			reg = <0xc080000 0x8000>;
+			qcom,page-mode = <0>;
+			qcom,rx-head-buf-size = <1540>;
+			qcom,num-gmac = <2>;
+			qcom,mdio-supported;
+
+			interrupts = <0 65 1>,
+					<0 66 1>,
+					<0 67 1>,
+					<0 68 1>,
+					<0 69 1>,
+					<0 70 1>,
+					<0 71 1>,
+					<0 72 1>,
+					<0 73 1>,
+					<0 74 1>,
+					<0 75 1>,
+					<0 76 1>,
+					<0 77 1>,
+					<0 78 1>,
+					<0 79 1>,
+					<0 80 1>,
+					<0 240 1>,
+					<0 241 1>,
+					<0 242 1>,
+					<0 243 1>,
+					<0 244 1>,
+					<0 245 1>,
+					<0 246 1>,
+					<0 247 1>,
+					<0 248 1>,
+					<0 249 1>,
+					<0 250 1>,
+					<0 251 1>,
+					<0 252 1>,
+					<0 253 1>,
+					<0 254 1>,
+					<0 255 1>;
+
+			gmac0 {
+				local-mac-address = [000000000000];
+				qcom,phy-mdio-addr = <3>;
+				qcom,poll-required = <1>;
+				qcom,poll-required-dynamic = <1>;
+				qcom,forced-speed = <1000>;
+				qcom,forced-duplex = <1>;
+				vlan-tag = <2 0x10>;
+			};
+
+			gmac1 {
+				local-mac-address = [000000000000];
+				qcom,poll-required-dynamic = <1>;
+				vlan-tag = <1 0x20>;
+			};
+		};
+
+		i2c_0: i2c@78b7000 { /* BLSP1 QUP2 */
+			pinctrl-0 = <&i2c_0_pins>;
+			pinctrl-names = "default";
+			status = "disabled";
+		};
+
+		gpio-leds {
+			compatible = "gpio-leds";
+
+			power_blue {
+				label = "power_blue_led";
+				gpios = <&tlmm 57 GPIO_ACTIVE_HIGH>;
+				default-state = "on";
+			};
+			power_blue2 {
+				label = "power_blue_led2";
+				gpios = <&tlmm 60 GPIO_ACTIVE_HIGH>;
+				default-state = "off";
+			};
+			power_white {
+				label = "power_white_led";
+				gpios = <&tlmm 61 GPIO_ACTIVE_LOW>;
+				#default-state = "off";
+			};
+			power_white2 {
+				label = "power_white_led2";
+				gpios = <&tlmm 66 GPIO_ACTIVE_LOW>;
+				#default-state = "off";
+			};
+		};
+	};
+};
