@@ -6,17 +6,12 @@ QCA_LITHIUM:=kmod-qvit-lithium
 QCA_EDMA:=kmod-qca-edma
 NSS_COMMON:= \
 	kmod-qca-nss-dp \
-	kmod-qca-nss-drv \
-	kmod-qca-nss-gmac \
-	$(QCA_EDMA)
+	kmod-qca-nss-drv
 
 NSS_EIP197_FW:= \
-	qca-nss-fw-eip-hk \
 	qca-nss-fw-eip-cp
 
 NSS_STANDARD:= \
-	qca-nss-fw2-retail \
-	qca-nss-fw-hk-retail \
 	qca-nss-fw-cp-retail
 
 NSS_ENTERPRISE:= \
@@ -62,7 +57,7 @@ HW_CRYPTO:= kmod-crypto-qcrypto
 SHORTCUT_FE:= kmod-shortcut-fe kmod-shortcut-fe-cm kmod-shortcut-fe-drv
 QCA_RFS:= kmod-qca-rfs
 
-SWITCH_SSDK_PKGS:= kmod-qca-ssdk-hnat kmod-qca-ssdk-nohnat qca-ssdk-shell swconfig
+SWITCH_SSDK_PKGS:=kmod-qca-ssdk-nohnat qca-ssdk-shell swconfig
 SWITCH_SSDK_NOHNAT_PKGS:= kmod-qca-ssdk-nohnat qca-ssdk-shell swconfig
 SWITCH_OPEN_PKGS:= kmod-switch-ar8216 swconfig
 
@@ -80,8 +75,8 @@ WIFI_10_4_PKGS:=kmod-qca-wifi-10.4-unified-profile \
 
 WIFI_PKGS:=kmod-qca-wifi-unified-profile \
 	qca-hostap qca-hostapd-cli qca-wpa-supplicant \
-	qca-wpa-cli qca-spectral qca-wpc sigma-dut \
-	qcmbr-10.4 qca-wrapd qca-wapid qca-acfg whc whc-ui \
+	qca-wpa-cli qca-spectral qca-wpc \
+	qcmbr-10.4 qca-wrapd qca-acfg \
 	qca-lowi qca-iface-mgr-10.4 qca-icm qca-cfg80211 athdiag qca-cnss-daemon \
 	athtestcmd-lith
 
@@ -92,10 +87,7 @@ WIFI_PKGS_256MB:=kmod-qca-wifi-lowmem-profile \
 	qca-iface-mgr-10.4 qca-icm qca-cfg80211 athdiag qca-cnss-daemon \
 	athtestcmd-lith
 
-WIFI_10_4_FW_PKGS:=qca-wifi-fw-hw2-10.4-asic qca-wifi-fw-hw4-10.4-asic \
-	qca-wifi-fw-hw3-10.4-asic qca-wifi-fw-hw6-10.4-asic \
-	qca-wifi-fw-hw5-10.4-asic qca-wifi-fw-hw11-10.4-asic \
-	qca-wifi-hk-fw-hw1-10.4-asic qca-wifi-cyp-fw-hw1-11.0-asic
+WIFI_10_4_FW_PKGS:=qca-wifi-cyp-fw-hw1-11.0-asic
 
 WIL6210_PKGS:=kmod-wil6210 wigig-firmware iwinfo qca-fst-manager
 
@@ -115,7 +107,7 @@ USB_ETHERNET:= kmod-usb-net-rtl8152 kmod-usb-net
 
 TEST_TOOLS:=ethtool i2c-tools tcpdump
 
-UTILS:=file luci-app-samba rng-tools profilerd
+UTILS:=file luci-app-samba rng-tools
 
 COREBSP_UTILS:=pm-utils wififw_mount_script qca-thermald-10.4 qca-qmi-framework qca-time-services \
 	qca-wlanfw-upgrade dashboard
@@ -172,7 +164,7 @@ VIDEO:=kmod-qpic_panel_ertft
 
 KPI:=iperf-mt sysstat
 
-USB_DIAG:=kmod-diag-char kmod-usb-f-diag qca-diag
+USB_DIAG:=qca-diag
 
 CHAR_DIAG:=kmod-diag-char qca-diag
 
@@ -217,14 +209,13 @@ $(eval $(call Profile,QSDK_Open))
 define Profile/QSDK_Premium
 	NAME:=Qualcomm-Atheros SDK Premium Profile
 	PACKAGES:=$(OPENWRT_STANDARD) $(NSS_COMMON) $(NSS_STANDARD) $(SWITCH_SSDK_PKGS) \
-		$(WIFI_PKGS) $(WIFI_10_4_FW_PKGS) $(STORAGE) $(CD_ROUTER) \
-		$(NETWORKING) $(OPENVPN) $(UTILS) $(SHORTCUT_FE) $(HW_CRYPTO) $(QCA_RFS) \
-		$(AUDIO) $(VIDEO) $(IGMPSNOOING_RSTP) $(IPSEC) $(QOS) $(QCA_ECM_PREMIUM) \
-		$(NSS_MACSEC) $(TEST_TOOLS) $(NSS_CRYPTO) $(NSS_CLIENTS_STANDARD) $(COREBSP_UTILS) \
-		$(MAP_PKGS) $(HYFI) $(AQ_PHY) $(FAILSAFE) kmod-art2 -lacpd $(USB_DIAG) \
-		$(QCA_LITHIUM) $(NSS_EIP197_FW) $(CNSS_DIAG) $(FTM) $(QMSCT_CLIENT) \
-		$(MHI_QRTR) $(KPI) $(QRTR) \
-		$(NSS_RMNET)
+		$(WIFI_PKGS) $(WIFI_10_4_FW_PKGS) $(STORAGE) \
+		$(NETWORKING) $(UTILS) $(SHORTCUT_FE) \
+		$(IGMPSNOOING_RSTP) $(QOS) $(QCA_ECM_PREMIUM) \
+		$(NSS_MACSEC) $(TEST_TOOLS) $(NSS_CRYPTO) $(COREBSP_UTILS) \
+		$(FAILSAFE) kmod-art2 -lacpd $(USB_DIAG) \
+		$(NSS_EIP197_FW) $(CNSS_DIAG) $(FTM) \
+		$(KPI)
 endef
 
 define Profile/QSDK_Premium/Description
