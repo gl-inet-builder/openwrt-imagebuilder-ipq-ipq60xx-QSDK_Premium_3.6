@@ -117,8 +117,7 @@ FAILSAFE:= kmod-bootconfig
 NETWORKING:=mcproxy -dnsmasq dnsmasq-dhcpv6 bridge ip-full trace-cmd \
 	rp-pppoe-relay iptables-mod-extra iputils-tracepath iputils-tracepath6 \
 	kmod-nf-nathelper-extra kmod-ipt-nathelper-rtsp \
-	luci-app-upnp luci-app-ddns luci-proto-ipv6 \
-	luci-app-multiwan
+	luci-app-upnp luci-app-ddns luci-proto-ipv6
 
 NETWORKING_256MB:=-dnsmasq dnsmasq-dhcpv6 bridge ip-full trace-cmd \
 	rp-pppoe-relay iptables-mod-extra iputils-tracepath iputils-tracepath6 \
@@ -208,12 +207,12 @@ $(eval $(call Profile,QSDK_Open))
 
 define Profile/QSDK_Premium
 	NAME:=Qualcomm-Atheros SDK Premium Profile
-	PACKAGES:=$(OPENWRT_STANDARD) $(NSS_COMMON) $(NSS_STANDARD) $(SWITCH_SSDK_PKGS) \
+	PACKAGES:=$(OPENWRT_STANDARD) $(NSS_COMMON) $(NSS_STANDARD) $(NSS_CLIENTS_256MB) $(SWITCH_SSDK_PKGS) \
 		$(WIFI_PKGS) $(WIFI_10_4_FW_PKGS) $(STORAGE) \
 		$(NETWORKING) $(UTILS) $(SHORTCUT_FE) \
 		$(IGMPSNOOING_RSTP) $(QOS) $(QCA_ECM_PREMIUM) \
 		$(NSS_MACSEC) $(TEST_TOOLS) $(NSS_CRYPTO) $(COREBSP_UTILS) \
-		$(FAILSAFE) kmod-art2 -lacpd $(USB_DIAG) \
+		kmod-art2 -lacpd $(USB_DIAG) \
 		$(NSS_EIP197_FW) $(CNSS_DIAG) $(FTM) \
 		$(KPI)
 endef
