@@ -173,20 +173,16 @@ build_image: FORCE
 clean:
 	rm -rf $(TMP_DIR) $(DL_DIR) $(TARGET_DIR) $(BIN_DIR)
 
-si_bin_dir=$(TOPDIR)/single_img_dir/IPQ4019.ILQ.5.0/common/build/ipq
+SI_BUILD_DIR=$(TOPDIR)/single_img_dir/IPQ6018.ILQ.11.0/common/build
 si: FORCE
 	tar xf single_img_dir_simple.tar.gz
-	rm -f $(TOPDIR)/single_img_dir/IPQ4019.ILQ.5.0/common/build/ipq/openwrt*
-	rm -f $(TOPDIR)/single_img_dir/IPQ4019.ILQ.5.0/common/build/bin/*
-	rm -f $(TOPDIR)/single_img_dir/IPQ4019.ILQ.5.0/common/build/*.log
-	cp $(TOPDIR)/bin/ipq/openwrt* $(TOPDIR)/single_img_dir/IPQ4019.ILQ.5.0/common/build/ipq; \
-	mv $(si_bin_dir)/openwrt-ipq-ipq40xx-qcom-ipq40xx-ap.dkxx-fit-uImage.itb $(si_bin_dir)/openwrt-ipq806x-qcom-ipq40xx-ap.dkxx-fit-uImage.itb; \
-	mv $(si_bin_dir)/openwrt-ipq-ipq40xx-squashfs-root.img $(si_bin_dir)/openwrt-ipq806x-squashfs-root.img; \
-	mv $(si_bin_dir)/openwrt-ipq-ipq40xx-ubi-root.img $(si_bin_dir)/openwrt-ipq806x-ipq40xx-ubi-root.img; \
-	cd single_img_dir/IPQ4019.ILQ.5.0/common/build; \
-	python pack.py -t nor -B -F appsboardconfig_premium -o ../../../ipq40xx-nor-apps.img  ./ipq; \
-	python pack.py -t norplusemmc -B -F appsboardconfig_premium -o ../../../ipq40xx-noremmc-apps.img ./ipq; \
-	python pack.py -t norplusnand -B -F appsboardconfig_premium -o ../../../ipq40xx-nornand-apps.img ./ipq
+	cp $(TOPDIR)/bin/ipq/openwrt* $(SI_BUILD_DIR)/ipq
+	cp $(TOPDIR)/bin/ipq/dtbs/* $(SI_BUILD_DIR)/ipq
+	cd $(SI_BUILD_DIR); \
+	sed s/"3.201"/"`cat $(TOPDIR)/build_dir/target-arm_cortex-a7_musl-1.1.16_eabi/root-ipq/etc/glversion`"/ $(SI_BUILD_DIR)/ipq/sysupgrade.meta.bak >$(SI_BUILD_DIR)/ipq/sysupgrade.meta ; \
+	sed -i s/"20210402201017"/`date '+%Y%m%d%H%M%S'`/ $(SI_BUILD_DIR)/ipq/sysupgrade.meta ; \
+	python ../../apss_proc/out/meta-scripts/pack_hk.py --arch ipq6018 --fltype nand --srcPath ./ipq --inImage ./ipq --outImage ./bin --image_type hlos; \
+	mv ./bin/nand-ipq6018-apps.img ../../../ax1800-nand-apps.img
 
 info:
 	(unset PROFILE FILES PACKAGES MAKEFLAGS; $(MAKE) -s _call_info)
