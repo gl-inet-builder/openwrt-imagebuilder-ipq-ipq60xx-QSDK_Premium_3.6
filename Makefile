@@ -182,7 +182,9 @@ si: FORCE
 	sed s/"3.201"/"`cat $(TOPDIR)/build_dir/target-arm_cortex-a7_musl-1.1.16_eabi/root-ipq/etc/glversion`"/ $(SI_BUILD_DIR)/ipq/sysupgrade.meta.bak >$(SI_BUILD_DIR)/ipq/sysupgrade.meta ; \
 	sed -i s/"20210402201017"/`date '+%Y%m%d%H%M%S'`/ $(SI_BUILD_DIR)/ipq/sysupgrade.meta ; \
 	python ../../apss_proc/out/meta-scripts/pack_hk.py --arch ipq6018 --fltype nand --srcPath ./ipq --inImage ./ipq --outImage ./bin --image_type hlos; \
-	mv ./bin/nand-ipq6018-apps.img ../../../ax1800-nand-apps.img
+	python ../../apss_proc/out/meta-scripts/pack_hk.py --arch ipq6018 --fltype norplusnand --srcPath ./ipq --inImage ./ipq --outImage ./bin --image_type hlos; \
+	mv ./bin/nand-ipq6018-apps.img ../../../ax1800-nand-apps.img; \
+	mv ./bin/norplusnand-ipq6018-apps.img ../../../ax1800-nornand-apps.img
 
 info:
 	(unset PROFILE FILES PACKAGES MAKEFLAGS; $(MAKE) -s _call_info)
