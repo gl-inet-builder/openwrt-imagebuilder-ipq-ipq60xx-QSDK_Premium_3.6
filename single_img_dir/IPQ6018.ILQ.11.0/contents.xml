@@ -1,0 +1,297 @@
+<?xml version="1.0" ?>
+<contents>
+  <product_info>
+    <product_name>IPQ6018.ILQ.11.0</product_name>
+    <hlos_type cmm_var="HLOS_TYPE">LE</hlos_type>
+    <chipid cmm_var="CHIPID">ipq6018</chipid>
+  </product_info>
+  <builds_flat>
+    <build>
+      <name>common</name>
+      <role>common</role>
+      <chipset>ipq6018</chipset>
+      <build_id>IPQ6018.ILQ.11.0-00255-P-2</build_id>
+      <windows_root_path>.\\</windows_root_path>
+      <linux_root_path>.//</linux_root_path>
+      <image_dir>common</image_dir>
+      <release_path/>
+    </build>
+    <build>
+      <name>boot</name>
+      <role>boot</role>
+      <chipset>ipq6018</chipset>
+      <build_id>BOOT.XF.0.3-00077-IPQ60xxLZB-2</build_id>
+      <windows_root_path>.\\</windows_root_path>
+      <linux_root_path>.//</linux_root_path>
+      <image_dir>boot_images</image_dir>
+      <release_path>HY11_CompileTest</release_path>
+      <file_ref flash_file="true">
+        <file_name>xbl.elf</file_name>
+        <file_path>boot_images/QcomPkg/IPQ6018Pkg/Bin/6018/LA/RELEASE/sign/default/sbl1</file_path>
+      </file_ref>
+      <file_ref flash_file="true">
+        <file_name>xbl_nand.elf</file_name>
+        <file_path>boot_images/QcomPkg/IPQ6018Pkg/Bin/6018/LA/RELEASE/sign/default/sbl1</file_path>
+      </file_ref>
+      <file_ref flash_file="true">
+        <file_name>partition_tool</file_name>
+        <file_path>boot_images/QcomPkg/IPQ6018Pkg/Tools/</file_path>
+      </file_ref>
+      <file_ref flash_file="true">
+        <file_name>bootconfig_tool</file_name>
+        <file_path>boot_images/QcomPkg/IPQ6018Pkg/Tools/</file_path>
+      </file_ref>
+      <file_ref flash_file="true">
+        <file_name>XBLLoader.dll</file_name>
+        <file_path>HK11/boot_images/QcomPkg/IPQ6018Pkg/Bin</file_path>
+      </file_ref>
+      <file_ref flash_file="true">
+        <file_name>QSaharaServer.exe</file_name>
+        <file_path>boot_images/QcomPkg/Tools/storage/fh_loader</file_path>
+      </file_ref>
+      <file_ref flash_64_file="true">
+        <file_name>xbl.elf</file_name>
+        <file_path>boot_images/QcomPkg/IPQ6018Pkg/Bin/6018/LA/RELEASE/sign/default/sbl1</file_path>
+      </file_ref>
+      <file_ref flash_64_file="true">
+        <file_name>xbl_nand.elf</file_name>
+        <file_path>boot_images/QcomPkg/IPQ6018Pkg/Bin/6018/LA/RELEASE/sign/default/sbl1</file_path>
+      </file_ref>
+      <file_ref flash_64_file="true">
+        <file_name>partition_tool</file_name>
+        <file_path>boot_images/QcomPkg/IPQ6018Pkg/Tools/</file_path>
+      </file_ref>
+      <file_ref flash_64_file="true">
+        <file_name>bootconfig_tool</file_name>
+        <file_path>boot_images/QcomPkg/IPQ6018Pkg/Tools/</file_path>
+      </file_ref>
+      <file_ref flash_64_file="true">
+        <file_name>XBLLoader.dll</file_name>
+        <file_path>HK11/boot_images/QcomPkg/IPQ6018Pkg/Bin</file_path>
+      </file_ref>
+      <file_ref flash_64_file="true">
+        <file_name>QSaharaServer.exe</file_name>
+        <file_path>boot_images/QcomPkg/Tools/storage/fh_loader</file_path>
+      </file_ref>
+      <buildfile_path>python/</buildfile_path>
+      <build_command>python -u boot_images/QcomPkg/buildit.py --variant LA -r RELEASE -t IPQ6018Pkg &amp;&amp; rm -f boot_images/Conf/* &amp;&amp; python boot_images/packit.py -t IPQ6018 --variant LZB</build_command>
+    </build>
+    <build>
+      <name>tz</name>
+      <role>tz</role>
+      <chipset>ipq6018</chipset>
+      <build_id>TZ.WNS.5.1-00075-IPQ60xxAAAAANAZT-2</build_id>
+      <windows_root_path>.\\</windows_root_path>
+      <linux_root_path>.//</linux_root_path>
+      <image_dir>trustzone_images</image_dir>
+      <release_path>HY11_CompileTest</release_path>
+      <file_ref flash_file="true">
+        <file_name>tz.mbn</file_name>
+        <file_path>trustzone_images/build/ms/bin/OAPAANAA/signed</file_path>
+      </file_ref>
+      <file_ref flash_file="true">
+        <file_name>devcfg.mbn</file_name>
+        <file_path>trustzone_images/build/ms/bin/OAPAANAA</file_path>
+      </file_ref>
+      <file_ref flash_file="true">
+        <file_name>devcfg_noac.mbn</file_name>
+        <file_path>trustzone_images/build/ms/bin/OAPAANAA</file_path>
+      </file_ref>
+      <file_ref flash_file="true">
+        <file_name>devcfg_nosmmu.mbn</file_name>
+        <file_path>trustzone_images/build/ms/bin/OAPAANAA</file_path>
+      </file_ref>
+      <file_ref flash_64_file="true">
+        <file_name>tz.mbn</file_name>
+        <file_path>trustzone_images/build/ms/bin/OAPAANAA/signed</file_path>
+      </file_ref>
+      <file_ref flash_64_file="true">
+        <file_name>devcfg.mbn</file_name>
+        <file_path>trustzone_images/build/ms/bin/OAPAANAA</file_path>
+      </file_ref>
+      <file_ref flash_64_file="true">
+        <file_name>devcfg_noac.mbn</file_name>
+        <file_path>trustzone_images/build/ms/bin/OAPAANAA</file_path>
+      </file_ref>
+      <file_ref flash_64_file="true">
+        <file_name>devcfg_nosmmu.mbn</file_name>
+        <file_path>trustzone_images/build/ms/bin/OAPAANAA</file_path>
+      </file_ref>
+      <buildfile_path>python/</buildfile_path>
+      <build_command>python trustzone_images/build/ms/build_all.py CHIPSET=ipq60xx --branch TZ.WNS.5.1 --tree=prune SIGNSERVER=10.201.2.84 SIGNTYPE=CASS SIGNPORT=53000 &amp;&amp; python trustzone_images/build/ms/build_all.py CHIPSET=ipq60xx --branch TZ.WNS.5.1 --cbt='xbl_sec' &amp;&amp; mkdir -p FEAT-BIN-PlayReady30 &amp;&amp; cp -rf deploy_OAPAANAA/* . &amp;&amp; cp -rf deploy_OAPAANAA_verify/HY11_1 HY11_CompileTest</build_command>
+    </build>
+    <build>
+      <name>adsp</name>
+      <role>adsp</role>
+      <chipset>ipq6018</chipset>
+      <name>adsp</name>
+      <build_id/>
+      <windows_root_path cmm_root_path_var="ADSP_BUILDROOT">.\\</windows_root_path>
+      <linux_root_path cmm_root_path_var="ADSP_BUILDROOT">.//</linux_root_path>
+      <image_dir>adsp_proc</image_dir>
+      <release_path>HY11_CompileTest</release_path>
+      <file_ref fat_file="true" adsp_ubi_file="true">
+        <file_name>adspr.jsn</file_name>
+        <file_path>adsp_proc/build/ms/servreg/6018.adsp.prodQ/</file_path>
+      </file_ref>
+      <download_file cmm_file_var="ADSP_BINARY" pil_split="adsp" minimized="true">
+        <file_name>adsp.mbn</file_name>
+        <file_path>adsp_proc/obj/qdsp6v5_ReleaseG/6018.adsp.prod/</file_path>
+      </download_file>
+      <wf_step_filter>non_hlos,dspso,multi_image</wf_step_filter>
+      <file_ref flash_file="true">
+        <file_name>*</file_name>
+        <file_path>adsp_proc/build/ms/bin/FW_IMAGES</file_path>
+      </file_ref>
+      <file_ref flash_64_file="true">
+        <file_name>*</file_name>
+        <file_path>adsp_proc/build/ms/bin/FW_IMAGES</file_path>
+      </file_ref>
+    </build>
+    <build>
+      <name>rpm</name>
+      <role>rpm</role>
+      <chipset>ipq6018</chipset>
+      <build_id>RPM.BF.2.4.1-00083-IPQ8074AAAAANAZR-5</build_id>
+      <windows_root_path>.\\</windows_root_path>
+      <linux_root_path>.//</linux_root_path>
+      <image_dir>rpm_proc</image_dir>
+      <release_path>HY11_CompileTest</release_path>
+      <file_ref flash_file="true">
+        <file_name>rpm.mbn</file_name>
+        <file_path>IPQ6018/rpm_proc/build/ms/bin/6018/</file_path>
+      </file_ref>
+      <file_ref flash_64_file="true">
+        <file_name>rpm.mbn</file_name>
+        <file_path>IPQ6018/rpm_proc/build/ms/bin/6018/</file_path>
+      </file_ref>
+      <buildfile_path>mkdir/</buildfile_path>
+      <build_command>mkdir -p ./rpm_proc_bk &amp;&amp; mkdir -p ./IPQ8074 &amp;&amp; mkdir -p ./IPQ6018 &amp;&amp; cp -r ./rpm_proc/* ./rpm_proc_bk/ &amp;&amp; rpm_proc/build/build_packed.sh 8074 &amp;&amp; mv ./rpm_proc ./IPQ8074/ &amp;&amp; mkdir -p ./rpm_proc &amp;&amp; cp -r ./rpm_proc_bk/* ./rpm_proc/ &amp;&amp; rpm_proc/build/build_packed.sh 6018 &amp;&amp; mv ./rpm_proc ./IPQ6018/ &amp;&amp; mv ./rpm_proc_bk ./rpm_proc &amp;&amp; mkdir -p  ./rpm_proc/build/ms/bin &amp;&amp; mkdir -p  ./rpm_proc/build/ms/bin/8074 &amp;&amp; mkdir -p  ./rpm_proc/build/ms/bin/6018 &amp;&amp;  cp ./IPQ8074/rpm_proc/build/ms/bin/8074/rpm.mbn ./rpm_proc/build/ms/bin/8074/rpm.mbn &amp;&amp; cp ./IPQ6018/rpm_proc/build/ms/bin/6018/rpm.mbn ./rpm_proc/build/ms/bin/6018/rpm.mbn</build_command>
+    </build>
+    <build>
+      <name>apps</name>
+      <role>apps</role>
+      <chipset>ipq6018</chipset>
+      <build_id>NHSS.QSDK.11.0-04274-P-1</build_id>
+      <windows_root_path>.\\</windows_root_path>
+      <linux_root_path>.//</linux_root_path>
+      <image_dir>apss_proc</image_dir>
+      <release_path>HY11_CompileTest</release_path>
+      <file_ref flash_apss_64_file="true">
+        <file_name>openwrt*</file_name>
+        <file_path>apss_proc/out/ipq60xx_64/</file_path>
+      </file_ref>
+      <file_ref flash_apss_64_file="true">
+        <file_name>qcom-ipq6018*</file_name>
+        <file_path>apss_proc/out/ipq60xx_64/dtbs</file_path>
+      </file_ref>
+      <file_ref flash_apss_64_file="true">
+        <file_name>openwrt-ipq6018*.elf</file_name>
+        <file_path>apss_proc/out/ipq60xx/</file_path>
+      </file_ref>
+      <file_ref flash_apss_file="true">
+        <file_name>openwrt*</file_name>
+        <file_path>apss_proc/out/ipq60xx/</file_path>
+      </file_ref>
+      <file_ref flash_file_debug="true">
+        <file_name>qcom-ipq6018*</file_name>
+        <file_path>apss_proc/out/ipq60xx/dtbs</file_path>
+      </file_ref>
+      <file_ref flash_apss_file="true">
+        <file_name>bl31.mbn</file_name>
+        <file_path>apss_proc/out/ipq60xx/</file_path>
+      </file_ref>
+      <buildfile_path>./</buildfile_path>
+      <build_command>create_BuildProducts ./create_BuildProducts</build_command>
+    </build>
+    <build>
+      <name>wlan</name>
+      <role>wlan</role>
+      <chipset>ipq6018</chipset>
+      <build_id>WLAN.HK.2.1-01577-QCAHKSWPL_SILICONZ-1</build_id>
+      <windows_root_path>.\\</windows_root_path>
+      <linux_root_path>.//</linux_root_path>
+      <image_dir>wlan_proc</image_dir>
+      <release_path>BIN</release_path>
+      <file_ref flash_file="true">
+        <file_name>*</file_name>
+        <file_path>wlan_proc/build/ms/bin/6018.wlanfw.eval/FW_IMAGES</file_path>
+      </file_ref>
+      <file_ref flash_64_file="true">
+        <file_name>*</file_name>
+        <file_path>wlan_proc/build/ms/bin/6018.wlanfw.eval/FW_IMAGES</file_path>
+      </file_ref>
+      <buildfile_path>CRM_BUILDID=${CRM_BUILDID};/</buildfile_path>
+      <build_command>CRM_BUILDID=${CRM_BUILDID}; mkdir -p ./wlan_proc/wlan/subsys/phyucode_binary/image_hawkeye; cp -r ./wlan_proc/wlan/subsys/phyucode_binary/hk2/* ./wlan_proc/wlan/subsys/phyucode_binary/image_hawkeye/; mkdir -p ./wlan_proc/wlan/subsys/phyucode_binary/image_cypress; cp -r ./wlan_proc/wlan/subsys/phyucode_binary/cyp/* ./wlan_proc/wlan/subsys/phyucode_binary/image_cypress/; mkdir -p ./wlan_proc/core; cp -r ./wlan_proc/v56/core/* ./wlan_proc/core/; cd ./wlan_proc/build/ms; sh build_v1_v2_Kale_Assert_Disable.sh; cd ../../..; pwd; cd ./wlan_proc/pkg/wlan_proc/src/package/QCA8074_v2.0; tar -xvzf qca-wifi-fw-src-WLAN.HK.2.1-*-QCAHKSWPL_SILICONZ-*.tgz; mv ./wlan/subsys/phyucode_binary/hk2 ./wlan/subsys/phyucode_binary/image_hawkeye; mv ./wlan/subsys/phyucode_binary/cyp ./wlan/subsys/phyucode_binary/image_cypress; rm -rf qca-wifi-fw-src-WLAN.HK.2.1-*-QCAHKSWPL_SILICONZ-*.tgz; tar -cvzf qca-wifi-fw-src-${CRM_BUILDID}.tgz *; rm -rf build config qmimsgs scripts tools wlan; cd ..;cd ./QCA6018_v1.0; tar -xvzf qca-wifi-fw-src-WLAN.HK.2.1-*-QCAHKSWPL_SILICONZ-*.tgz; mv ./wlan/subsys/phyucode_binary/cyp ./wlan/subsys/phyucode_binary/image_cypress; mv ./wlan/subsys/phyucode_binary/hk2 ./wlan/subsys/phyucode_binary/image_hawkeye; rm -rf qca-wifi-fw-src-WLAN.HK.2.1-*-QCAHKSWPL_SILICONZ-*.tgz; tar -cvzf qca-wifi-fw-src-${CRM_BUILDID}.tgz *; rm -rf build config qmimsgs scripts tools wlan;</build_command>
+    </build>
+    <build>
+      <name>cnss_sw_ps</name>
+      <role>cnss_sw_ps</role>
+      <chipset>ipq6018</chipset>
+      <build_id>CNSS.PS.3.11-00013-S-1</build_id>
+      <windows_root_path>.\\</windows_root_path>
+      <linux_root_path>.//</linux_root_path>
+      <image_dir>cnss_proc_ps</image_dir>
+      <buildfile_path>bash/</buildfile_path>
+      <build_command>bash ./cnss_proc_ps/build/build_crm.sh</build_command>
+    </build>
+    <build>
+      <name>wcnss</name>
+      <role>wcnss</role>
+      <chipset>ipq6018</chipset>
+      <build_id>WLAN.BL.3.11-00030-S-1</build_id>
+      <windows_root_path>.\\</windows_root_path>
+      <linux_root_path>.//</linux_root_path>
+      <image_dir>cnss_proc</image_dir>
+      <buildfile_path>bash/</buildfile_path>
+      <build_command>bash ./cnss_proc/build/support/makesdk --crm-build-id ${CRM_BUILDID} --parallel --static-analysis first --tar --trace --clobber --configs QCA9984-hw-v1 AR900B-hw-v2 IPQ4019-hw-v1 QCA9888-hw-v2</build_command>
+    </build>
+    <build>
+      <name>dct_plugin</name>
+      <role>dct_plugin</role>
+      <chipset>ipq6018</chipset>
+      <build_id/>
+      <windows_root_path>.\\</windows_root_path>
+      <linux_root_path>.//</linux_root_path>
+      <image_dir>SRC</image_dir>
+    </build>
+  </builds_flat>
+  <build_tools>
+    <tool>
+      <name>create_FIT_image</name>
+      <build>apps</build>
+      <path>apss_proc/out/meta-scripts/pack_hk.py</path>
+    </tool>
+    <tool>
+      <name>meta_tools</name>
+      <build>apps</build>
+      <path>apss_proc/out/meta-tools</path>
+    </tool>
+    <tool>
+      <name>jtag-scripts</name>
+      <build>apps</build>
+      <path>apss_proc/out/jtag-scripts</path>
+    </tool>
+    <tool>
+      <name>exported_packages</name>
+      <build>apps</build>
+      <path>apss_proc/out/ipq60xx/packages</path>
+    </tool>
+    <tool>
+      <name>exported_packages_64</name>
+      <build>apps</build>
+      <path>apss_proc/out/ipq60xx_64/packages</path>
+    </tool>
+    <tool>
+      <name>skales</name>
+      <build>apps</build>
+      <path>apss_proc/out/skales</path>
+    </tool>
+  </build_tools>
+  <external_tools>
+      
+   </external_tools>
+  <builds_nested>
+      
+   </builds_nested>
+</contents>

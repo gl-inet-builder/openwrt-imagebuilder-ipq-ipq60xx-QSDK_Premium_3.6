@@ -1,0 +1,1 @@
+{  "metadata_version": "1.0", "supported_devices":["glinet,gl-ipq60xx","gl-ipq60xx","glinet,gl-ipq60xx"], "version": { "release": "3.201", "date": "20210402201017", "dist": "qsdk", "version": "11", "revision": "6", "target": "ipq60xx", "board": "glinet_gl-ipq60xx" } }
