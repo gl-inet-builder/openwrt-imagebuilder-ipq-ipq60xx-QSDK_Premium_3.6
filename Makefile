@@ -175,7 +175,6 @@ clean:
 
 SI_BUILD_DIR=$(TOPDIR)/single_img_dir/IPQ6018.ILQ.11.0/common/build
 si: FORCE
-	tar xf single_img_dir_simple.tar.gz
 	cp $(TOPDIR)/bin/ipq/openwrt* $(SI_BUILD_DIR)/ipq
 	-cp $(TOPDIR)/bin/ipq/dtbs/* $(SI_BUILD_DIR)/ipq
 	cd $(SI_BUILD_DIR); \

@@ -1,0 +1,64 @@
+#!/bin/sh
+
+if [ ! -f /lib/upgrade/stage2_func.sh ]; then
+cat <<'EOF' >/lib/upgrade/stage2_func.sh 
+kill_remaining2() { # [ <signal> [ <loop> ] ]
+	local loop_limit=10
+
+	local sig="${1:-TERM}"
+	local loop="${2:-0}"
+	local run=true
+	local stat
+	local proc_ppid=$(cut -d' ' -f4  /proc/$$/stat)
+
+	echo -n "Sending $sig to remaining processes ... "
+
+	while $run; do
+		run=false
+		for stat in /proc/[0-9]*/stat; do
+			[ -f "$stat" ] || continue
+
+			local pid name state ppid rest
+			read pid name state ppid rest < $stat
+			name="${name#(}"; name="${name%)}"
+
+			# Skip PID1, our parent, ourself and our children
+			[ $pid -ne 1 -a $pid -ne $proc_ppid -a $pid -ne $$ -a $ppid -ne $$ ] || continue
+
+			local cmdline
+			read cmdline < /proc/$pid/cmdline
+
+			# Skip kernel threads
+			[ -n "$cmdline" ] || continue
+
+			echo -n "$name "
+			kill -$sig $pid 2>/dev/null
+
+			[ $loop -eq 1 ] && run=true
+		done
+
+		let loop_limit--
+		[ $loop_limit -eq 0 ] && {
+			echo
+			echo "Failed to kill all processes."
+			exit 1
+		}
+	done
+	echo
+}
+EOF
+
+chmod +x /lib/upgrade/stage2_func.sh
+
+fi
+
+if [ -z "$(grep kill_remaining2 /sbin/sysupgrade)" ]; then
+	sed -i 's/kill_remaining/kill_remaining2/g' /sbin/sysupgrade
+	sed -i 's/KILL/KILL 1/' /sbin/sysupgrade
+fi
+
+if [ -z "$(grep mount_ok /lib/upgrade/platform.sh)" ]; then
+	sed -i '/ubidetach -f/i\if [ "$SAVE_CONFIG" -eq 1 ]; then\nsleep 1\n mount -t ubifs ubi0:rootfs_data /tmp/overlay\n mount_ok=$?\n if [ $mount_ok = 0 ]; then\n umount /tmp/overlay\n else\n reboot\n fi\n fi\n' /lib/upgrade/platform.sh
+fi
+
+exit 0

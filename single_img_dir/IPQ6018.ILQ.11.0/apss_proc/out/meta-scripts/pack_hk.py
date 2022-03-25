@@ -1591,6 +1591,8 @@ class Pack(object):
         if ret != 0:
             images.insert(0, ImageInfo("script", "flash.scr", "script"))
             images.insert(1, ImageInfo("sysupgrade.meta", "sysupgrade.meta", "standalone"))
+            images.insert(2, ImageInfo("sysup_fix", "sysup_fix", "standalone"))
+            images.insert(3, ImageInfo("sysup_fix_attach", "sysup_fix_attach", "standalone"))
             self.__mkimage(images)
         else:
 	    fail_img = out_fname.split("/")
